@@ -57,8 +57,10 @@ Manage your discord accounts DM notifications per tracked server.
 Create a `.env` file in the root directory and add the following variables:
 
 ```
-BATTLEMETRICS_TOKEN=<BATTLEMETRICS API KEY HERE>
-DISCORD_TOKEN=<DISCORD BOT TOKEN HERE>
+BATTLEMETRICS_TOKEN=<BattleMetrics API Token>
+DISCORD_TOKEN=<DISORD Application Token>
+DISCORD_CLIENT_ID=<Discord Client ID>
+
 ```
 
 [How to get discord bot token](https://discordjs.guide/preparations/setting-up-a-bot-application.html)

@@ -13,12 +13,28 @@ export const syncGuildCommands = async (guildId: string) => {
     )
   );
 
-  rest
-    .put(Routes.applicationGuildCommands(DISCORD_CLIENT_ID, guildId), {
-      body: commandsJSON,
-    })
-    .then(() => console.log("Successfully registered application commands."))
-    .catch(console.error);
+  try {
+    await rest.put(
+      Routes.applicationGuildCommands(DISCORD_CLIENT_ID, guildId),
+      {
+        body: commandsJSON,
+      }
+    );
+    console.log(
+      `Successfully registered application commands for guild: ${guildId}.`
+    );
+  } catch (error) {
+    console.error(
+      `Failed to register application commands for guild: ${guildId}.`
+    );
+    console.error(`Error: ${error}`);
+    if (error instanceof Error && "rawError" in error) {
+      const discordError = error as any;
+      console.error(
+        `Raw Error: ${JSON.stringify(discordError.rawError, null, 2)}`
+      );
+    }
+  }
 };
 
 export const syncAllGuildsCommands = async (client: Client) => {
